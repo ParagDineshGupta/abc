@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+ <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form action="" method="post" onsubmit="enc();"><span>LOGIN:-</span><br><br>
+      <span>user</span>  <input type="text" name="user">
+      <span>password</span>  <input type="password" name="psw">
+      <input type="submit" >
+    </form>
+	  <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js">
+function enc(){
+//var x=document.getElementsByName("user")[0].value;
+ //window.alert(x);
+   var encryptedAES = CryptoJS.AES.encrypt("Message", "My Secret Passphrase");
+alert('sss');
+
+}
+</script>   
+  </body>
+</html>

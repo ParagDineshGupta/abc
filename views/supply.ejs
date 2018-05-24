@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>access</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<p>len <%= len %></p><form action="/sup" method="POST"><table>
+<%  for(var i=0;i<result.length;i++){ %><tr><td><%= result[i].mobile %></td><td><%= result[i].product %></td><td><%= result[i].date_time %></td><td><button type="submit" name="submit" value="<%= result[i].id %>"></button></td></tr><%}%>
+    </table></form>
+
+</body>
+</html>
