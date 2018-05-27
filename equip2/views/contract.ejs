@@ -1,0 +1,396 @@
+<body>
+<form  method="post" onsubmit="return myFunction()"  >
+    <center><h2>Contract Form</h2>
+        <table id="contract"  width="70%" align="center" border="0" cellpadding="4px" cellspacing="8px" >
+ <tr>
+                <td>Machine Owner Company Name</td>
+                <td><input type="text" name="Owner" required></td>
+                
+            </tr>
+			 <tr>
+                <td>Machine client Company Name</td>
+                <td><input type="text" name="Client" required></td>
+                
+            </tr>
+			<input type="text" name="Client_Password" id="pass" value="equipshare" hidden>
+			 
+            <tr>
+                <td>Following equipment is provided</td>
+                <td><select onchange="fun3(this.value);" name="Equipment"><% for(var i=0;i<data.length;i++) { %><option><%= data[i].equips %></option><% } %><select></td>
+                
+            </tr>
+			 <tr class="xy" style="display:none">
+                <td>Variable fee parameter (Fuel Cost or any other)</td>
+                <td><input type="number" min="0" name="Full_Drum" value="0" required></td>
+            </tr> 
+			 <tr class="y" style="display:none">
+                <td>Dry Run Parameter</td>
+                <td><input type="number" min="0" name="Dry_Run" value="0" required></td>
+            </tr> 
+			<tr>
+                <td>Number of Equipment</td>
+                <td><input type="number" min="1" name="Number_of_Equipment" value="1" required></td>
+                
+            </tr>
+			<tr>
+                <td>Contract Terms</td>
+                <td><select onchange="fun1(this.value);" id="time2" name="Contract_Terms"><option>monthly</option><option>annually</option><option>daily</option><select></td>
+            </tr>
+			
+			
+			 <tr>
+                <td>No of <span id="time">months</span> for which equipment will be provided</td>
+                <td><input type="number" name="Providing_Time" min="0" id="count" oninput="fun2(this.value);" required></td>
+            </tr>
+			 <tr>
+                <td>Location from where Equipment will be transported</td>
+                <td><input type="text" name="Departure" required></td>
+            </tr>
+			
+			 <tr>
+                <td>Maximum days required for mobilization</td>
+                <td><input type="number" name="Max_Mobilization" min="0" required></td>
+            </tr>
+			 <tr>
+                <td> mobilization transportation</td>
+                <td><select id="mob" name="Transportation" onchange="fun4()"><option>owner</option><option>client</option><select></td>
+            </tr>
+  <tr>
+                <td> De-mobilization transportation</td>
+                <td><select id="demob" name="Retranportation" onchange="fun5()"><option>owner</option><option>client</option><select></td>
+            </tr>
+
+			
+			
+			
+			 <tr id="mc">
+                <td>Mobilization Charge</td>
+                <td><input type="number" min="0" name="Mobilization_Charge" value="0" required ></td>
+            </tr>
+
+ <tr id="dmc">
+                <td>De-mobilization Charge</td>
+                <td><input type="number" min="0" name="Demobilization_Charge" value="0"  required ></td>
+            </tr>
+			
+			
+			
+			
+  <tr>
+                <td>Total hours for which machine will work per day</td>
+                <td><input type="number"  min="0" name="Working_Hours" id="wpd" value="8" required></td>
+            </tr>
+
+ <tr>
+                <td>No of days for maintainance</td>
+                <td><input type="number" id="maint" min="0" name="Maintainance_Days" value="4" onchange="fun6()" required></td>
+            </tr>
+ <tr>
+                <td>Total working days for which rent will be charged</td>
+                <td><input type="number" id="Wh" min="0" name="Working_Days" value="26"  required ></td>
+            </tr>
+
+ <tr>
+                <td>Maintainance will be provided by which party</td>
+                <td><select name="Maintainance_Party"><option>owner</option><option>client</option><select></td>
+            </tr>
+
+ <tr>
+                <td> Duties and taxes payable by</td>
+                <td><select name="Duties_And_Taxes"><option>owner</option><option>client</option><select></td>
+            </tr>
+ <tr>
+                <td> Insurance payable by </td>
+                <td><select name="Insurance"><option>owner</option><option>client</option><select></td>
+            </tr>
+<tr>
+                <td>Maximum number of  hours  allowed for breakdown</td>
+                <td><input type="number" min="0" name="Max_Hours_Breakdown_Allowable" value="8" required></td>
+            </tr>
+
+ <tr>
+                <td> No. of operator provided by owner</td>
+                <td><input type="number" min="0" name="Max_Crew" required></td>
+            </tr>
+ <tr>
+                <td>Salary of crew to be provided by client(If Applicable)</td>
+                <td><input type="number" min="0" name="Crew_Salary" value="0" required></td>
+            </tr>
+ <tr>
+                <td>Parking of equipment and its accessories expenses</td>
+                <td><select name="Parking_And_Accessories"><option>client</option><option>owner</option><select></td>
+            </tr>
+ <tr>
+                <td>Maximum days allowed for inspection within which client have to revert back</td>
+                <td><input type="number" min="0" name="Max_Inspection_Days" value="1" required></td>
+            </tr>
+ <tr>
+                <td>Interest rate to be charged for delay in payment in form of penalty </td>
+                <td><input type="number" min="0" name="Interest_Ondelay" value="10" required></td>
+            </tr>
+			<tr>
+                <td>Who is going to provide fuel/power of equipment?</td>
+                <td><select name="Fuel_Provider"><option>client</option><option>owner</option><select></td>
+            </tr>
+<tr>
+                <td>Expenses for Fuel/power</td>
+                <td><select name="Fuel_Power"><option>client</option><option>owner</option><select></td>
+            </tr>
+
+<tr>
+                <td>By whom will the loss of equipment cost borne? </td>
+                <td><select name="Equip_Lost"><option>client</option><option>owner</option><select></td>
+            </tr>
+<tr>
+                <td>Who will borne any kind of violation of environmental policies/norms and regulation? </td>
+                <td><select name="Norms_Regulation"><option>owner</option><option>client</option><select></td>
+            </tr>
+			
+			 <tr>
+                <td>Food and Accomodation </td>
+                <td><select name="Food"><option>client</option><option>owner</option><select></td>
+            </tr>
+ <tr>
+                <td>Advance Payment for how many months?</td>
+                <td><input type="number" min="0" name="Advance_Payment_For_Months" value="1" required></td>
+            </tr>
+ <tr>
+                <td>Start Date of Contract</td>
+                <td><input type="date" name="Date_Of_Contract" id="DOC" required ></td>
+            </tr>
+			
+ <tr>
+                <td>Location where machine has to be deployed</td>
+                <td><input type="text" name="Deployment_Loc" required></td>
+            </tr>
+			 <tr>
+                <td>Fixed Pay </td>
+                <td><input type="number" min="0" name="Fixed_Pay" onchange="fun8()" id="fp" required></td>
+            </tr>
+ <tr>
+                <td>Penalty charge per day if extension of mobilization</td>
+                <td><input type="number" min="0" name="Mobilization_Extension_Charge" id="em" required></td>
+            </tr>
+ <tr>
+                <td>Deduction per hour for non-availability of machine</td>
+                <td><input type="number" min="0" name="Nonavailability_Charge_Per_Hour" id="nam" required></td>
+            </tr>
+        </table>
+        <span><%= contract %> </span>
+		
+<br>
+<center>
+<table  width="70%" align="center" border="0" cellpadding="4px" cellspacing="8px"> <tr>
+                <th>Particulars</th>
+                <th>Amount/Quantity</th>
+            </tr>
+
+
+<tr>
+                <td >PPE- non-compliance with requirements mentioned in Service Agreement</td>
+				 
+                <td><input type="number" min="0" name="PPE" value="1000" required></td>
+            </tr> 
+
+
+
+<tr>
+                <td >Consuming alcohol/ Drunk on duty </td>				 
+                <td><input type="number" min="0" name="Alcohol" value="500" required></td>
+            </tr>
+
+
+<tr>
+                <td >Penanlty per hour for extra hours of breakdown</td>
+				 
+                <td><input type="number" min="0" name="Breakdown_Hours" id="bh" required></td>
+            </tr>
+
+<tr>
+                <td>Penanlty for extra hour worked by equipment beyond what is mentioned in contract</td>
+				 
+                <td><input type="number" min="0" name="Operation_Hours" id="eh" required></td>
+            </tr>
+			
+</table>
+
+</center>
+<span id="pass2" hidden></span>
+
+<td><input type="submit"  ></td>
+</form>
+<br><br>
+<details><summary><h2>Terms and Conditions</h2></summary>
+<ul><li>	DEFAULT; REMEDIES. If 
+(a) Client shall default in the payment of any rent or in making any other payment hereunder when due, or 
+(b) Client shall default in the payment when due of any indebtedness of Client to Owner arising independently of this lease, or 
+(c) Client shall default in the performance of any other covenant herein and such default shall continue for five days after written notice hereof to Client by Owner, or 
+(d) Client becomes insolvent or makes an assignment for the benefit of creditors, or 
+(e) Client applies for or consents to the appointment of a receiver, trustee, or liquidator of Client or of all or a substantial part of the assets of Client under the Bankruptcy Act, or any amendment thereto (including, without limitation, a petition for reorganization, arrangement, or extension) or under any other insolvency law or law providing for the relief of debtors, then, if and to the extent permitted by applicable law. Owner shall have the right to under any other insolvency law or law providing for the relief of debtors, then, if and to the extent permitted by applicable law. 
+Owner shall have the right to exercise any one or more of the following remedies. 
+(a) To declare the entire amount of rent hereunder immediately due and payable as to any or all items of the equipment, without notice or demand to Client. 
+(b) To sue for and recover all rents, and other payments, then accrued or thereafter accruing, with respect to any or all items of the equipment. 
+(c) To take possession of any or all items of the equipment without demand, notice, or legal process, wherever they may be located. Client hereby waives any and all damages occasioned by such taking of possession. Any said taking of possession shall not constitute a termination of this lease as to any or all items of equipment unless Owner expressly so notifies Client in writing. 
+(d) To terminate this lease as to any or all items of equipment. 
+(e) To pursue any other remedy at law or in equality. Notwithstanding any said repossession, or any other action which Owner may take, Client shall be and remain liable for the full performance of all obligations on the part of Client to be performed under this Lease. All such remedies are cumulative, and may be exercised concurrently or separately. 
+</li><li>	NO SUBLETTING ASSIGNMENT. No equipment shall be sublet by Client, nor shall he assign or transfer any interest in this Agreement without written consent of Owner. Owner may assign this Agreement without notice. Subject to the foregoing, this Agreement inures to the benefit of, and is binding upon, the heirs, successors, and assigns of the parties hereto. 
+</li><li>	FORCE MAJEURE: The client agrees that owner shall not be held liable for any performance loss, delay, damage or other casualty suffered or incurred under the work order/agreement as long as such performance is prevented or delayed by an act of God or internal disturbance i.e. Civil or Military war or Strike of State/national level, earthquakes, floods, fires, explosions, action of Government nor any other cause which is beyond the reasonable control of the effecting the execution of the job at work site, Any failure or delay by owner in the performance of any of its obligations under the agreement owing to one or more of the foregoing causes shall not be considered breach of the agreement. Shortage of Fuel/labor/Power shall not be treated as a cause for Force Majeure. 
+</li><li>	In the event of Force Majeure clauses, client should within one week of actual occurrence of the event, notify, in writing through Telex/fax with a registered copy duly marked & post, to Owner, all the details & the present status of obligations under the Work Order/Agreement. Should the condition of the force Majeure prevail for more than 30 days, Owner shall have the right to cancel the agreement/order and the Terms & Conditions applicable to termination for convenience shall apply. 
+</li><li>No ground for exemption under this clause can be invoked if the Client fails to give timely notice by FAX/ EMAIL & registered post or subsequently fails to support the occurrence of the force majeure conditions by documentary evidence to the satisfaction of Owner. Till such times, the Client is liable to pay the rental charges for period equipment is remained idle. The parties however agree that financial obligations or covenants of the parties shall not constitute Force Majeure event.
+
+</li><li>OWNERSHIP RIGHTS: In any circumstances, Owner remains the owner of the equipment. Client shall not be responsible for any transfer, unauthorized usage of equipment. Client shall not have right to the Equipment or any part thereof by way of mortgage, charges, sub-lease, sale or other assignment, hypothecation, pledge, hire, encumbrance, conducting arrangement, license or otherwise or allow or purport to allow or create any lien, charge, attachment or other claim of whatever nature on the Equipment or any part thereof 
+
+</li><li>	Disclaimer: 
+a)	Owner shall in no manner be equated with the Client and be responsible for the performance of any part of the project undertaken/being undertaken by the Client. 
+b)	Owner shall not be responsible, directly or indirectly, to any third party, including without limitation, to the principal contractor of the project undertaken/being undertaken by the Client.
+c)	Owner shall not be held responsible for any kind of consequential losses / damages due to breakdown of the rented equipment.
+
+</li><li>	Governing Law, Jurisdiction & Arbitration: The Parties here to agree that the courts and tribunals in Indore shall have the exclusive jurisdiction and shall be governed in accordance with the laws of India
+a)	Arbitration:- In the event of any claim, dispute or difference arising out of or in connection with the interpretation or implementation of the agreement or out of or in connection with any breach, or alleged breach of the agreement (hereinafter referred to as “the dispute”)  between the parties, the parties hereby agreed to refer such dispute to Arbitration under Construction Industry Arbitration Association (CIAA) Rules and Regulations save and except that on behalf of both the parties to the agreement the Owner shall be entitled to select the sole Arbitrator out of the panel of CIAA. The proceedings shall be governed by the Arbitration and Conciliation Act of 1996 with any statutory modification thereto or re-enactment thereof. The venue for holding such arbitration proceedings would be Indore.
+b)	The Client do hereby unequivocally agrees to these terms without any reservation voluntarily and it has been agreed that the proceeding shall be conducted in English, the cost of the arbitration proceeding shall be borne by the parties equally unless the Arbitrator appointed in the matter passes any Award otherwise. It has further been agreed between the parties that in the event the Sole Arbitrator so selected is unable to accept appointment within a fortnight from the date of notice the owner shall have the right to select other Sole Arbitrator from the said panel so as to continue with the Arbitration proceeding and that the Award passed by the Sole Arbitrator shall be final and binding on the parties and the parties agree to be bound thereby and to act accordingly.
+c)	It is further agreed between the parties, that for the purpose of availing of CIAA panel of Arbitrators and/or Rules framed there-under, make payments of necessary fees which are to be borne by the parties jointly and for such purpose to take all such steps whatsoever is required, the Client does hereby authorize the Owner to take all necessary steps on its behalf which the Client shall be deemed to have ratified. 
+The aforesaid provisions shall survive the termination/expiry of the Agreement.
+</li><li>	Miscellaneous & Special Conditions
+a)	Amendment: The Agreement represents the entire agreement between the Parties. No amendment to the Agreement shall be binding unless in writing and signed by the duly authorized representative of each Party.
+b)	Language: All the documents to be furnished or communications to be given or made under the agreement shall be in English. 
+c)	Keep the Equipment, at all times, in the possession and control of the Owner’s Crew/Operator/Supervisor.
+d)	The Client shall obtain permission from the site owner/contractor to let Owner personnel/officials to have unrestricted entry at the site. 
+</li>
+<ul>
+</details>
+<br>
+<table width="100%"><tr><td>Owner</td><td>Equipshare</td><td>Client</td><tr><td></td><td></td><td></td></tr><tr><td>-------</td><td>--------</td><td>-------</td></table>
+<script>
+function fun3(val){
+if(val=='Transit Mixer'||val=='Tipper'||val=='Bulker')
+{
+ document.getElementsByClassName('xy')[0].style.display='table-row';
+}
+else
+{
+document.getElementsByClassName('xy')[0].style.display='none';
+}
+if(val=='Transit Mixer'||val=='Tipper'||val=='Bulker')
+{
+ document.getElementsByClassName('y')[0].style.display='table-row';
+}
+else
+{
+document.getElementsByClassName('y')[0].style.display='none';
+}
+}
+
+</script>
+			<script>
+			function fun1(val){
+			
+			if(val=="annually")
+			{document.getElementById('time').innerHTML='years';
+			document.getElementById('mob').value='owner';
+			document.getElementById('demob').value='owner';
+			
+			
+			}
+			if(val=="daily"){
+			document.getElementById('time').innerHTML='days';
+			document.getElementById('mob').value='client';
+			document.getElementById('demob').value='client';}
+			if(val=="monthly")
+			document.getElementById('time').innerHTML='months';
+			
+			
+			}
+			</script>
+			<script>
+			function fun2(val)
+		{
+		if(document.getElementById('time2').value=='monthly' ){
+		if(val<4)
+		{
+		document.getElementById('mob').value='client';
+			document.getElementById('demob').value='client';
+		}
+		else if(val<7)
+		{
+		document.getElementById('mob').value='client';
+			document.getElementById('demob').value='owner';
+		}
+		else
+		{document.getElementById('mob').value='owner';
+			document.getElementById('demob').value='owner';
+		}
+		}}
+			</script>
+			<script>
+			function fun6(){
+			var x=document.getElementById('maint').value;
+			x=30-x;
+			document.getElementById('Wh').value=x;
+			}
+			</script>
+			<script>
+			var n =  new Date();
+var y = n.getFullYear();
+var m = n.getMonth() + 1;
+var d = n.getDate();
+document.getElementById('DOC').value=y+ "-0" + m + "-" + d; </script>
+<script>
+
+			function fun4(){
+			if(document.getElementById('mob').value=="owner")
+			{
+			document.getElementById('mc').style.display='none';
+			
+			}
+			else{
+			document.getElementById('mc').style.display='table-row';
+			}
+			}
+			
+	fun4();		
+	
+	function fun5(){
+			if(document.getElementById('demob').value=="owner")
+			{
+			document.getElementById('dmc').style.display='none';
+			
+			}
+			else{
+			document.getElementById('dmc').style.display='table-row';
+			}
+			}
+			
+	fun5();	
+function fun8(){
+var x=document.getElementById('fp').value;
+var z=document.getElementById('wpd').value;
+var w=document.getElementById('Wh').value;
+			var y=x/100;
+			y=Math.round(y);
+		document.getElementById('em').value=y;
+		var y=w*z;
+		x=x/y;
+		x=Math.round(x);
+		document.getElementById('bh').value=x;	
+		document.getElementById('eh').value=x;	
+		document.getElementById('nam').value=x;	
+			}	
+			
+			
+		
+			</script>
+<script>
+function myFunction() {
+    var a=document.getElementById("pass2").innerHTML;
+    var pass = prompt("Please make Password for Client Party:",a);
+	if(pass == '' || pass == null)
+     return false;
+	if(pass.length<8) {
+      return false;
+    }
+   else {document.getElementById("pass2").innerHTML = pass;
+    document.getElementById("pass").value = pass;
+	return  true;}
+}
+</script>
+</body>

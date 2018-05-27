@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ 
+
+ <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+	<table border="1" width="40%" >
+	<tr><th>Company</th><th>Equipment Quantity</th><th>Equipment </th></tr>
+	<% for(var i=0;i<data.length;i++) { %>
+		<tr><td>
+		<a onclick="document.getElementById('<%= "com"+data[i].eqid %>').submit();">
+		<form method="post" id="<%= "com"+data[i].eqid %>">
+		<input type="text" name="company_id" value="<%= data[i].company_id %>" hidden>
+		</form> <%= data[i].company %>  </a></td>
+		 <td><%= data[i].quantity %></td> 
+		 <td><a onclick="document.getElementById('<%= "eq"+data[i].eqid %>').submit();">
+		 <form method="post" id="<%= "eq"+data[i].eqid %>">
+		 <input type="text" name="eqid" value="<%= data[i].eqid %>" hidden>
+		 </form> <%= data[i].equip %>  </a></td> 
+         </tr>   
+			<% } %>
+	</table>
+<a  href="ram" >click</a>
+  
+  </body>
+</html>
