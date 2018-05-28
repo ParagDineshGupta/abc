@@ -8,10 +8,11 @@ var fs = require('fs');
 var url=require('url');
 var mysql = require('mysql');
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "experimental"
+   host: "mydbinstance.cq4rkzpvmufw.ap-south-1.rds.amazonaws.com",
+    user: "parag",
+    password: "equipshare",
+    database: "equipshare"
+
 
 });
 con.connect(function(err) {
