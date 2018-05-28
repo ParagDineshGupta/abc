@@ -75,7 +75,7 @@ con.query(sql,function(err,result){
 		 
 		  }	 
        else{
-		   	for(let myKey=0;myKey<mj.length;myKey++) 
+		   	for(var myKey=0;myKey<mj.length;myKey++) 
 		{if(!power[myKey]>0)
 			power[myKey]=0;
 	 var sql2="INSERT INTO equant values('',"+iid+",'"+mj[myKey]+"',"+quant[myKey]+","+power[myKey]+")";
