@@ -15,7 +15,7 @@ var con = mysql.createConnection({
 
 });
 con.connect(function(err) {
-    if (err) throw err;
+    if (err) console.log(err);
 });
 
 /* GET home page. */
@@ -48,7 +48,7 @@ for(var myKey in mj) {   console.log("key:"+myKey+", value:"+mj[myKey]);   }
 var len=req.body.vender;
 len=len.length;
 
-for(let i=0;i<len;i++){
+for( i=0;i<len;i++){
 	if(len==1)
 {
 	ij=mj;
