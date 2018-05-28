@@ -10,8 +10,8 @@ var con = mysql.createConnection({
 });
 con.connect(function(err) {
     if (err) console.log(err);
-    console.log('conected');
-
+    else
+        res.end('error');
 });
 
 var express = require('express');
