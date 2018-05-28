@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
 	mj=req.body;
 	console.log(mj);
 	var quant = new Array();
-    let iid;
+   var iid;
 var sql="INSERT INTO company values('','"+mj['company']+"','"+mj['cp']+"','"+mj['loc']+"','"+mj['mob']+"','"+mj['amob']+"','"+mj['email']+"','"+mj['web']+"','"+mj['type']+"','"+mj['state']+"')";
 con.query(sql,function(err,result){
 	 if(err){console.log(err);}
