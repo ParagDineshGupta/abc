@@ -49,6 +49,7 @@ console.log(q);
 // const workSheetsFromBuffer = xlsx.parse(fs.readFileSync(`${__dirname}/Ridham.xlsx`));
 // // Parse a file
 // const workSheetsFromFile = xlsx.parse(`${__dirname}/Ridham.xlsx`);
+        console.log('index');
  res.render('index', { title: 'index' });
     }
      
