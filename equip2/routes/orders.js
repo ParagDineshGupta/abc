@@ -15,8 +15,7 @@ var con = mysql.createConnection({
 });
 con.connect(function(err) {
         if (err) console.log(err);
-    else
-        res.end('error');
+    
 });
 
 /* GET home page. */
