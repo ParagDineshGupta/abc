@@ -11,7 +11,9 @@ var con = mysql.createConnection({
 
 });
 con.connect(function(err) {
-    if (err) throw err;
+      if (err) console.log(err);
+    else
+        res.end('error');
 });
 
 router.get('/', function(req, res, next) {
