@@ -2,21 +2,10 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var url=require('url');
-var md5 = require('md5');
-var aesjs = require('aes-js');
+
 var mysql = require('mysql');
-var con = mysql.createConnection({
-   host: "mydbinstance.cq4rkzpvmufw.ap-south-1.rds.amazonaws.com",
-    user: "parag",
-    password: "equipshare",
-    database: "equipshare"
-
-});
-con.connect(function(err) {
-       if (err) console.log(err);
-    
-
-});
+var dbcon = require('./dbcon');
+var con = mysql.createConnection(dbcon.con);
 router.get('/', function(req, res, next) {
 	
 	res.render('view', { title: 'view' });
@@ -35,7 +24,7 @@ router.post('/', function(req, res, next) {
  
   var sql2="SELECT * FROM contract where conid='"+req.body.conid+"' ";
     con.query(sql2, function (err,xresult) {
-        if(err){throw err;
+        if(err){ res.end('error');
           console.log('err');  }
         else{console.log('xresult');}
         var len = Object.keys(xresult).length;

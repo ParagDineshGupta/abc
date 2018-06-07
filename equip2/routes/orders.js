@@ -8,14 +8,14 @@ var fs = require('fs');
 var url=require('url');
 var mysql = require('mysql');
 var con = mysql.createConnection({
-   host: "mydbinstance.cq4rkzpvmufw.ap-south-1.rds.amazonaws.com",
-    user: "parag",
-    password: "equipshare",
-    database: "equipshare"
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "experimental"
+
 });
 con.connect(function(err) {
-        if (err) console.log(err);
-    
+    if (err) throw err;
 });
 
 /* GET home page. */
@@ -48,7 +48,7 @@ for(var myKey in mj) {   console.log("key:"+myKey+", value:"+mj[myKey]);   }
 var len=req.body.vender;
 len=len.length;
 
-for( i=0;i<len;i++){
+for(let i=0;i<len;i++){
 	if(len==1)
 {
 	ij=mj;

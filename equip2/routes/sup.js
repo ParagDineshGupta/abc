@@ -2,15 +2,15 @@ var url=require('url');
 var mysql = require('mysql');
 var qs=require('querystring');
 var con = mysql.createConnection({
-    host: "mydbinstance.cq4rkzpvmufw.ap-south-1.rds.amazonaws.com",
-    user: "parag",
-    password: "equipshare",
-    database: "equipshare"
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "experimental"
 
 });
 con.connect(function(err) {
-        if (err) console.log(err);
-
+    if (err) throw err;
+    console.log('conected');
 
 });
 

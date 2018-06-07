@@ -4,15 +4,14 @@ var fs = require('fs');
 var url=require('url');
 var mysql = require('mysql');
 var con = mysql.createConnection({
-  host: "mydbinstance.cq4rkzpvmufw.ap-south-1.rds.amazonaws.com",
-    user: "parag",
-    password: "equipshare",
-    database: "equipshare"
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "experimental"
 
 });
 con.connect(function(err) {
-      if (err) console.log(err);
-
+    if (err) throw err;
 });
 
 router.get('/', function(req, res, next) {
@@ -36,7 +35,7 @@ router.post('/', function(req, res, next) {
 	mj=req.body;
 	console.log(mj);
 	var quant = new Array();
-   var iid;
+    let iid;
 var sql="INSERT INTO company values('','"+mj['company']+"','"+mj['cp']+"','"+mj['loc']+"','"+mj['mob']+"','"+mj['amob']+"','"+mj['email']+"','"+mj['web']+"','"+mj['type']+"','"+mj['state']+"')";
 con.query(sql,function(err,result){
 	 if(err){console.log(err);}
@@ -76,7 +75,7 @@ con.query(sql,function(err,result){
 		 
 		  }	 
        else{
-		   	for(var myKey=0;myKey<mj.length;myKey++) 
+		   	for(let myKey=0;myKey<mj.length;myKey++) 
 		{if(!power[myKey]>0)
 			power[myKey]=0;
 	 var sql2="INSERT INTO equant values('',"+iid+",'"+mj[myKey]+"',"+quant[myKey]+","+power[myKey]+")";
