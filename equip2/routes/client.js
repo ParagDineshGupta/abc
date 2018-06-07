@@ -1,18 +1,7 @@
 var url=require('url');
 var mysql = require('mysql');
 var qs=require('querystring');
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "experimental"
 
-});
-con.connect(function(err) {
-    if (err) throw err;
-    console.log('conected');
-
-});
 
 var express = require('express');
 var router = express.Router();
