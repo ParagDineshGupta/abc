@@ -111,7 +111,7 @@ con.query(sql,function(err,result){
 
     var sql5="SELECT * FROM equipment";
     con.query(sql5, function (err,result5) {
-        if(err){throw err;
+        if(err){
             res.end('error');}
         else{console.log('result5');}
         var len = Object.keys(result5).length;
