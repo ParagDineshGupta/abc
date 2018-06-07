@@ -2,58 +2,34 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var url=require('url');
-var md5 = require('md5');
-var aesjs = require('aes-js');
 var mysql = require('mysql');
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "experimental"
+var dbcon = require('./dbcon');
+var con = mysql.createConnection(dbcon.con);
 
-});
-con.connect(function(err) {
-    if (err) throw err;
-    console.log('conected');
 
-});
 router.get('/', function(req, res, next) {
-	
-	res.render('login', { title: 'login2' });
- 
-//console.log(md5('message'));
- //res.render('client', { title: 'client' });
-     
+
+	res.render('login', { title: 'login',edata:'' });    
 });
 router.post('/', function(req, res, next) {
 	
-    	var mj = new Array();
-	mj=req.body;
+    
 	var user=req.body.user;
 	var psw=req.body.psw;
 
-for(var myKey in mj) {
-   console.log("key:"+myKey+", value:"+mj[myKey]);   
-}
- 
-  var sql2="SELECT * FROM contract where conid='"+user+"' and Client_Password ='"+psw+"'";
+  var sql2="SELECT * FROM admin_table where uname='"+user+"' and pass ='"+psw+"'";
     con.query(sql2, function (err,result) {
-        if(err){throw err;
-            res.end('error');}
-        else{console.log('result');}
-        var len = Object.keys(result).length;
-		var dateTime = require('node-datetime');
-var dt = dateTime.create();
-var formatted = dt.format('Y-m-d');
-console.log(formatted);
-		if(len==1)
-			res.render('client', { title: 'client',LBID:formatted,data:result});    
-else 
-  res.render('login', { title:'login' });  }) 
-  
-
-
+        if(err){res.render('login', { title: 'login' , edata:'Wrong User Name/Password ' });}
+        else{
+            // set session
+            var len = Object.keys(result).length;
+            if(len>0)
+            res.render('admin/admin', { title: 'Admin Home'});
+else
+    res.render('login', { title: 'login' , edata:'Wrong User Name/Password ' });
+            }
 });
+    });
 
 
 module.exports = router;

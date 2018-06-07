@@ -4,7 +4,7 @@ var fs = require('fs');
 var url=require('url');
 
 router.get('/', function(req, res, next) {
-  
+  //unset session
  res.render('home', { title: 'Equipshare' });   
 });
 

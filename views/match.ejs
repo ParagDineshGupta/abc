@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
- 
-
- <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+<% include admin/aheader %>
 	<style>
 	span:hover{
 	background-color: yellow;
 	}</style>
-  </head>
-  <body>
+ 
+
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 	<table border="1" width="40%" >
@@ -34,7 +28,7 @@
 	</table>
 <a  href="ram" >click</a>
   
-  </body>
+ 
   <script>
   function fun1(ele){
 
@@ -85,4 +79,4 @@ alert(str1.replace(/[^a-zA-Z ]/g, ""));
   }
   
   </script>
-</html>
+
