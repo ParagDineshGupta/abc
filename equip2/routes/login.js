@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
             // set session
             var len = Object.keys(result).length;
             if(len>0)
-            res.render('admin/admin', { title: 'Admin Home'});
+            res.render('admin', { title: 'Admin Home'});
 else
     res.render('login', { title: 'login' , edata:'Wrong User Name/Password ' });
             }
