@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>access</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
+<% include admin/aheader %>
 <h1><%= title %></h1>
 <p>Welcome to <%= title %></p>
 <h1><%= result.length %></h1>
@@ -14,5 +8,4 @@
     <%  for(var i=1;i<result.length;i++){ %> <tr><td><%= result[i].name %></td><td><%= result[i].address %></td><td><button type="submit" name="submit" value="<%= result[i].id %>"></button></td></tr><%}%>
 
 </table></form>
-</body>
-</html>
+
