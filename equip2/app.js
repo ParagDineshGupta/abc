@@ -19,6 +19,7 @@ var assets = require('./routes/assets');
 var orders = require('./routes/orders');
 var company = require('./routes/company');
 var ajax = require('./routes/ajax');
+var client = require('./routes/client');
 var ajax2 = require('./routes/ajax2');
 var app = express();
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/view', view);
+app.use('/client', client);
 app.use('/company', company);
 app.use('/ajax', ajax);
 app.use('/ajax2', ajax2);
