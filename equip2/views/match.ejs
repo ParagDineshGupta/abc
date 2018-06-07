@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ 
+
+ <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+	<style>
+	span:hover{
+	background-color: yellow;
+	}</style>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+	<table border="1" width="40%" >
+	<tr><th>Company</th><th>Type</th><th>Equipment Quantity</th><th>Equipment </th></tr>
+	<% for(var i=0;i<data.length;i++) { %>
+		<tr><td>
+		<a onclick="document.getElementById('<%= "com"+data[i].eqid %>').submit();">
+		<form method="post" id="<%= "com"+data[i].eqid %>">
+		<input type="text" name="company_id" value="<%= data[i].company_id %>" hidden>
+		</form> <%= data[i].company %>  </a></td>
+		<td><a><%= data[i].type %></a></td> 
+		 <td><%= data[i].quantity %></td> 
+		 <td><a onclick="document.getElementById('<%= "eq"+data[i].eqid %>').submit();">
+		 <form method="post" id="<%= "eq"+data[i].eqid %>">
+		 <input type="text" name="eqid" value="<%= data[i].eqid %>" hidden>
+		 </form><%= data[i].equip %></a></td>
+         <td><span onclick="fun1(this)"  data-value="<%= data[i].equip %>" data-val="<%= data[i].type %>">
+		 Match  </span></td> 		 
+         </tr>   
+			<% } %>
+	</table>
+<a  href="ram" >click</a>
+  
+  </body>
+  <script>
+  function fun1(ele){
+
+   var eType = ele.getAttribute("data-value");
+     var cType = ele.getAttribute("data-val");
+	// var x = document.getElementsByTagName("a").innerHTML(eType);
+	//var ax=document.querySelectorAll('[data-eType="'+cType+'"]');
+//	ax[1].style.color = "blue";
+var mySpans = document.getElementsByTagName('a');
+for(var i=0;i<mySpans.length;i++){
+
+}
+
+for(var i=0;i<mySpans.length;i++){
+var str=mySpans[i].text;
+str=str.replace(/[^a-zA-Z ]/g, "");
+str=str.trim();
+if( str == eType){
+var strx=mySpans[i-1].text;
+strx=strx.replace(/[^a-zA-Z ]/g, "");
+strx=strx.trim();
+if(strx!=cType){
+var parent = mySpans[i-2].parentNode;
+parent.style.backgroundColor = "yellow";
+mySpans[i-2].style.color = "blue";}
+else
+{
+mySpans[i].style.color = null;
+  var parent = mySpans[i].parentNode;
+parent.style.backgroundColor = "";
+}
+}
+else
+{
+  mySpans[i].style.color = null;
+  var parent = mySpans[i].parentNode;
+parent.style.backgroundColor = "";
+  //mySpans[i].style.backgroundColor ='white';
+  
+}
+
+}
+
+str1=mySpans[1].text;
+str1=str1.trim();
+alert(str1.replace(/[^a-zA-Z ]/g, ""));
+    alert(eType);
+  }
+  
+  </script>
+</html>

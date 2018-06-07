@@ -1,0 +1,61 @@
+<span><script>var d = new Date();
+document.write(d.toDateString()); </script> </span><br>
+<%= data[0].Equipment %><%= data[0].Client %><%= data[0].Breakdown_Hours %>
+<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+<form method="post" action="save" onsubmit="fun3();"> 
+
+
+<table><tr><th>Particulars</th><th>Quantity</th></tr>
+<input type="text" name="LBID" value="<%= LBID %>" hidden>
+<input type="text" name="Client" value="<%= data[0].Client  %>" hidden>
+<input type="text" name="conid" value="<%= data[0].conid  %>" hidden>
+<tr class="xy"><td>Total Km Run Full Drum</td><td><input type="number" min="0" name="Full_Drum" value="0" required></td></tr>
+<tr class="xy"><td>Total Dry Run Km</td><td><input type="number" min="0" name="Dry_Run" value="0" required></td></tr>
+<tr><td>Total amount of fuel used(litre)</td><td><input type="number" min="0" name="Fuel" required></td></tr>
+<tr><td>Total hours for which machine is operated in a day </td><td><input type="number" min="0" name="Operation_Hours" required></td></tr>
+<tr><td>PPE- non-compliance with requirements mentioned in Service Agreement ?	</td><td><input type="checkbox" name="PPE" value="1"></td></tr>
+<tr><td>Consuming alcohol/ Drunk on duty ?	</td><td><input type="checkbox" name="Alcohol" value="1" ></td></tr>
+
+<tr><td>Does any breakdown occurred ? </td><td><input type="checkbox"  onchange="handleChange(this);"></td></tr>
+<tr id="Breakdown_Hours" style="display:none"><td>Number of hours for which breakdown occurred</td><td><input type="number" min="0" id="break" ></td></tr>
+<tr><td><input type="number" min="0" name="Breakdown_Hours" id="break2" hidden></td><td><input type="submit" min="0"></td></tr>
+</table>
+</form>
+<script>
+function handleChange(checkbox) {
+    if(checkbox.checked == true){
+	document.getElementById('Breakdown_Hours').style.display='table-row';
+         
+    }else{
+        document.getElementById('Breakdown_Hours').style.display='none';
+   }
+}
+function fun3(){
+  var b=document.getElementById("break").value;
+  
+ if(b<=2)
+  b=0;
+  else if(b><%= data[0].Breakdown_Hours %>)
+  b=<%= data[0].Breakdown_Hours %>;
+  document.getElementById("break2").value=b;
+  alert(b);
+}
+</script>
+<script>
+
+var val='<%= data[0].Equipment %>';
+if(val=='Transit Mixer'||val=='Tipper'||val=='Bulker')
+{
+document.getElementsByClassName('xy')[0].style.display='table-row';
+  document.getElementsByClassName('xy')[1].style.display='table-row';
+ 
+}
+else
+{
+ document.getElementsByClassName('xy')[0].style.display='none';
+  document.getElementsByClassName('xy')[1].style.display='none';
+}
+
+
+
+</script>

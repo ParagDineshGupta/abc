@@ -1,0 +1,20 @@
+<body><hr>
+<table>
+<tr><th>Field</th><th>Total</th><th>Penalty</th><th>Total Penalty</th></tr>
+<% var sum=0;
+for(var myKey in data[0]) {
+
+ %>
+<tr>
+<td><%= myKey %></td><td><%= data[0][myKey] %></td>
+<td><%= xdata[0][myKey] %></td>
+<td><% if(!(isNaN(xdata[0][myKey]*data[0][myKey]))){ %>  <%= xdata[0][myKey]*data[0][myKey] %> <% } %> </td>
+</tr>
+<% if(!(isNaN(xdata[0][myKey]*data[0][myKey]))){sum=sum+xdata[0][myKey]*data[0][myKey];}
+} %>
+<tr><td></td><td></td><td></td><td></td></tr>
+<tr><td><b>Total</b></td><td></td><td></td><td><b><%= sum %></b></td></tr>
+</table>
+<hr>
+
+</body>

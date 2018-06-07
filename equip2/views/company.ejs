@@ -1,0 +1,252 @@
+<form method="Post" >
+<table>
+<caption><b><u>Company-Equipment Registration</u></b></caption></br>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Company</td>
+<td><input type="text" name="company" required></td>
+</tr>
+
+<tr>
+<td>Type</td>
+<td><select name="type" required><option value="">Select</option><option>RMC</option><option>Vendor</option><option>Contractor</option><option>Trader</option></select></td>
+</tr>
+
+<tr>
+<td>Contact Person </td>
+<td><input type="text" name="cp" ></td>
+</tr>
+
+<tr>
+<td>State</td>
+<td><select name="state"><option>MP</option><option>UP</option><option>MR</option><option>CG</option></select></td></td>
+</tr>
+
+<tr>
+<td>Location</td>
+<td><input type="text" name="loc" required></td>
+</tr>
+
+<tr>
+<td>Mobile No.</td>
+<td><input type="text" name="mob" pattern="[0-9]{10}" required></td>
+</tr>
+
+<tr>
+<td>Alternate Mobile No.</td>
+<td><input type="tel" name="amob" pattern="[0-9]{10}" ></td>
+</tr>
+
+<tr>
+<td>Email id </td>
+<td><input type="email" name="email" ></td>
+</tr>
+
+<tr>
+<td>Website</td>
+<td><input type="text" name="web"></td>
+</tr>
+
+
+
+</table>
+<INPUT type="button" class="but" value="Add Equipments" onclick="addRow('dataTable')" />
+
+	<INPUT type="button" class="but" value="Delete Equipments" onclick="deleteRow('dataTable')" />
+
+	<TABLE id="dataTable" border="1">
+		
+	</TABLE>
+	
+<INPUT type="button" class="but" value="Add More Equipments Details" onclick="addDetails('dataTable2')" />
+<TABLE id="dataTable2" border="1">
+		
+	</TABLE>
+	
+	<INPUT type="submit" onclick=" fun1();" />
+</form>
+<SCRIPT language="javascript">
+
+function fun1(){
+var x=confirm("Are you sure all filed are proper ");
+return x;
+//var table = document.getElementById('dataTable2');
+//if(!table.rows.length>0)
+//addDetails(dataTable2);
+
+}
+
+
+
+function addDetails(tableID) {
+
+var sum=0;
+var table = document.getElementById('dataTable');
+var table2 = document.getElementById(tableID);
+	var rowCount = table.rows.length;
+	for(var i=0;i<table.rows.length;i++)
+	{
+	var row=table.rows[i];
+	
+	
+	var col2=row.cells[1];
+	var fc2=col2.firstChild;
+	var val2=fc2.value;
+	
+	var col=row.cells[2];
+	var fc=col.firstChild;
+	var val=fc.value;
+	
+	var col3=row.cells[3];
+	var fc3=col3.firstChild;
+	var val3=fc3.value;
+	if(!val3>1)
+	{
+	fc3.value=0;
+	 alert(fc3.value);
+	}
+	val3=fc3.value;
+	
+	
+	for(var j=0;j<val3;j++)
+	{
+	sum++;
+		var rowCount2 = table2.rows.length;
+		var row2 = table2.insertRow(rowCount2);
+		var cell1 = row2.insertCell(0);
+			var element1 = document.createElement("input");
+			element1.type = "text";
+			element1.name="equipments";
+			element1.value=val2;
+			element1.disabled="true";
+			cell1.appendChild(element1);
+			
+			var cell2 = row2.insertCell(1);
+			var element2 = document.createElement("input");
+			element2.type = "text";
+			element2.placeholder = "Equipment Company";
+			element2.name="companies";
+			cell2.appendChild(element2);
+			
+			var cell3 = row2.insertCell(2);
+			var element3 = document.createElement("input");
+			element3.type = "text";
+			element3.placeholder = "Equipment Manufacturing Year";
+			element3.name="make";
+			cell3.appendChild(element3);
+			
+			var cell4 = row2.insertCell(3);
+			var element4 = document.createElement("input");
+			element4.type = "number";
+			element4.placeholder = "Equipment Capacity";
+			element4.name="capacities";
+			element4.value=val;
+			element4.disabled="true";
+			cell4.appendChild(element4);
+			
+			var cell5 = row2.insertCell(4);
+			var element5 = document.createElement("input");
+			element5.type = "text";
+			element5.placeholder = "Equipment Location";
+			element5.name="locations";
+			cell5.appendChild(element5);
+	
+	}
+	
+	}
+	//all buttton hidden
+ var buttons =document.getElementsByClassName('but') ;
+ for (var i = 0, l = buttons.length; i < l; ++i) {
+    buttons[i].style.display = "none";   
+}
+
+
+var allElements =document.getElementsByClassName('ro') ;
+for (var i = 0, l = allElements.length; i < l; ++i) {
+    allElements[i].readOnly = "true";
+	allElements[i].style. pointerEvents = "none";
+	
+	allElements[i].style.backgroundColor = "yellow";
+     //  allElements[i].disabled=true;
+}
+
+
+
+//allElements[1].style.readOnly = "true";
+
+alert("Please Fill more Details about these "+sum+" Equipments");
+}
+
+
+		function addRow(tableID) {
+
+			var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var cell1 = row.insertCell(0);
+			var element1 = document.createElement("input");
+			element1.type = "checkbox";
+			element1.name="chkbox";
+			element1.className="ro";
+			cell1.appendChild(element1);
+
+		    var cell2 = row.insertCell(1);	
+			var select = document.createElement('select');
+			select.name = "equip";
+			select.className="ro";
+			<% for(var i=0;i<data.length;i++) { %>
+		
+			option = document.createElement('option');
+            option.value ='<%= data[i].equips %>' ;
+            option.text = '<%= data[i].equips %>' ;
+            select.appendChild(option);
+			<% } %>
+            cell2.appendChild(select);
+
+			var cell4 = row.insertCell(2);
+			var element4 = document.createElement("input");
+			element4.type = "number";
+			element4.placeholder = "Capacity";
+			element4.name = "power";
+			element4.className="ro";
+			cell4.appendChild(element4);
+		
+			var cell3 = row.insertCell(3);
+			var element3 = document.createElement("input");
+			element3.type = "number";
+			element3.placeholder = "How Many Quantity";
+			element3.required = "True";
+			element3.name = "txtbox1";
+			element3.className="ro";
+			cell3.appendChild(element3);
+			
+			
+		}
+
+		function deleteRow(tableID) {
+			try {
+			var table = document.getElementById(tableID);
+			var rowCount = table.rows.length;
+
+			for(var i=0; i<rowCount; i++) {
+				var row = table.rows[i];
+				var chkbox = row.cells[0].childNodes[0];
+				if(null != chkbox && true == chkbox.checked) {
+					table.deleteRow(i);
+					rowCount--;
+					i--;
+				}
+
+
+			}
+			}catch(e) {
+				alert(e);
+			}
+		}
+
+	</SCRIPT>
