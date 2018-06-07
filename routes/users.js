@@ -1,18 +1,8 @@
 var url=require('url');
 var mysql = require('mysql');
 var qs=require('querystring');
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "experimental"
-
-});
-con.connect(function(err) {
-    if (err) throw err;
-    console.log('conected');
-
-});
+var dbcon = require('./dbcon');
+var con = mysql.createConnection(dbcon.con);
 
 var express = require('express');
 var router = express.Router();
@@ -26,7 +16,7 @@ router.post('/', function(req, res, next) {
 
     con.query(sql2, function (err,result) {
 
-        if(err){throw err;
+        if(err){
             res.end('error');}
         else{console.log("1 record inserted, ID: " + result.insertId);
 
