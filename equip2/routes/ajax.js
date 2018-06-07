@@ -7,16 +7,8 @@ var router = express.Router();
 var fs = require('fs');
 var url=require('url');
 var mysql = require('mysql');
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "experimental"
-
-});
-con.connect(function(err) {
-    if (err) throw err;
-});
+var dbcon = require('./dbcon');
+var con = mysql.createConnection(dbcon.con);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
